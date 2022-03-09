@@ -29,12 +29,12 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   const postContent = req.body;
+
   if (!postContent.title || !postContent.contents) {
     res.status(400).json({ message: 'Please provide title and contents for the post' });
   } else {
   Post.insert(postContent)
-    .then(post => {
-      
+    .then(post => { 
       Post.findById(post.id)
         .then(newPost => {
         res.status(201).json(newPost)
